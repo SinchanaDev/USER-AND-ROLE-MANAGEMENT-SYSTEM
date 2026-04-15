@@ -47,7 +47,10 @@ export default function LoginPage() {
     }
     setLoading(true)
     try {
-      const res = await authApi.login({ ...data, captchaToken })
+      const res = await authApi.login({
+  username: data.username,
+  password: data.password
+})
       setAuth(res.user, res.accessToken, res.refreshToken)
       if (res.firstLogin) navigate('/complete-profile')
       else navigate('/dashboard')
@@ -127,3 +130,4 @@ export default function LoginPage() {
     </div>
   )
 }
+
